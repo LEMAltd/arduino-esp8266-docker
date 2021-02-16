@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     g++ \
   && apt-get clean
 
-ENV ARDUINO_VER=arduino-1.8.5
+ENV ARDUINO_VER=arduino-1.8.13\
+    ESP_ARDUINO_VERSION=2.7.4
 
 ENV ARDUINO_PKG=${ARDUINO_VER}-linux64.tar.xz \
     ARDUINO_IDE_PATH=/opt/$ARDUINO_VER \
@@ -21,6 +22,6 @@ RUN wget https://downloads.arduino.cc/$ARDUINO_PKG \
     && rm $ARDUINO_PKG
 
 RUN mkdir -p /opt/dist \
-    && wget -O /opt/dist/$TOOLCHAIN_PKG_DST https://github.com/esp8266/Arduino/releases/download/2.3.0/$TOOLCHAIN_PKG
+    && wget -O /opt/dist/$TOOLCHAIN_PKG_DST https://github.com/esp8266/Arduino/releases/download/$ESP_ARDUINO_VERSION/$TOOLCHAIN_PKG
 
 ENTRYPOINT /bin/bash
